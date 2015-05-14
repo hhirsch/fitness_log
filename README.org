@@ -20,7 +20,7 @@ Also note that this is the formular for males. For females you have to change mo
 #+TBLFM: $5 = vmean($2..$4)::$9 = vmean($6..$8)::$13 = vmean($10..$12)::$16=1.10938-(0.0008267 *($5+$9+$13)) + (0.0000016*(($5+$9+$13)*($5+$9+$13)))-(0.0002574 *30)::$15=(495/$16)-450
 # Calculation method Jackson and Pollock 3 fold technique.
 
-#+begin_src R :exports both :results output graphics :var data=caliper :file body_fat.png :width 800 :height 600
+#+begin_src R :exports results :results output graphics :var data=caliper :file body_fat.png :width 800 :height 600
 par(mar=c(5,4,4,5)+.1)
 plot(as.Date(data$Date,origin="1970-01-01"), data$Fat, xlab="Date", ylim=c(0,30), ylab="Body Fat %",format="%d %b", type="b", pch=16, col="black")
 par(new=TRUE)
@@ -43,7 +43,7 @@ I am keeping track of the maximum repetitions I can do of certain exercises as a
 | 2015-04-04 |      15 |       5 |       3 |
 
 
-#+begin_src R :exports both :results output graphics :var data=strength :file strength.png :width 800 :height 600
+#+begin_src R :exports results :results output graphics :var data=strength :file strength.png :width 800 :height 600
 plot(as.Date(data$Date,origin="1970-01-01"), data$pushups, xlab="Date", ylim=c(0,50), ylab="Max. Repetitions",format="%d %b", type="b", pch=16, col="blue")
 lines(as.Date(data$Date,origin="1970-01-01"), data$chinups, type="b",  col="cornflowerblue")
 lines(as.Date(data$Date,origin="1970-01-01"), data$pullups, type="b",  col="black")
