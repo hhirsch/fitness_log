@@ -10,7 +10,7 @@ If you want to use this to keep track of your own data you should be familiar wi
 In the following table I am calculating my body fat percentage using a caliper and the Jackson and Pollock 3 fold technique.
 I also keep track of my body weight and compare both values using a diagram. You have to replace my age with yours in the formula.
 Also note that this is the formular for males. For females you have to change most of the values.
-Watch the video at https://youtu.be/wPy-D9LZQqM if you do not know how to use a caliper.
+Watch the video at https://youtu.be/wPy-D9LZQqM for information on how to use a caliper.
 #+tblname: caliper
 |       Date | Breast |    |    |     B.Avg | Belly |    |    |     B.Avg | Thigh |    |    |     T.Avg | Weight |       Fat |   Density |
 |------------+--------+----+----+-----------+-------+----+----+-----------+-------+----+----+-----------+--------+-----------+-----------|
