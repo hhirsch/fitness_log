@@ -61,12 +61,5 @@ legend("topleft",col=c("blue", "cornflowerblue", "black"),lty=1,legend=c("Push U
 #+tblname: measurements
 |       Date | biceps | hip |
 |------------+--------+-----|
-| 2015-04-02 |     15 |   5 |
-| 2015-04-04 |     15 |   5 |
+| 2015-19-09 |     35 |  98 |
 
-
-#+begin_src R :exports results :results output graphics :var data=measurements :file measurements.png :width 800 :height 600
-plot(as.Date(data$Date,origin="1970-01-01"), data$biceps, xlab="Date", ylim=c(0,50), ylab="Max. Repetitions",format="%d %b", type="b", pch=16, col="blue")
-lines(as.Date(data$Date,origin="1970-01-01"), data$hip, type="b",  col="cornflowerblue")
-legend("topleft",col=c("blue", "cornflowerblue"),lty=1,legend=c("Biceps","Hip"))
-#+End_src
