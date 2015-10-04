@@ -1,0 +1,68 @@
+#+TITLE:      Fitness Log
+#+AUTHOR:     Henry
+#+EMAIL:      
+#+LANGUAGE:   en
+* About
+I use this fitness log to keep myself motivated by having a way to see my improvenments over time.
+If you want to use this to keep track of your own data you should be familiar with emacs and org-mode.
+ 
+* Body Fat
+In the following table I am calculating my body fat percentage using a caliper and the Jackson and Pollock 3 fold technique.
+I also keep track of my body weight and compare both values using a diagram. You have to replace my age with yours in the formula.
+Also note that this is the formular for males. For females you have to change most of the values.
+Watch the video at https://youtu.be/wPy-D9LZQqM for information on how to use a caliper.
+#+tblname: caliper
+|       Date | Breast |    |    |     B.Avg | Belly |    |    |     B.Avg | Thigh |    |    |     T.Avg | Weight |       Fat |   Density |
+|------------+--------+----+----+-----------+-------+----+----+-----------+-------+----+----+-----------+--------+-----------+-----------|
+| 2015-05-05 |     12 | 16 | 16 | 14.666667 |    25 | 22 | 24 | 23.666667 |    18 | 24 | 20 | 20.666667 |   88.8 | 17.663966 | 1.0584523 |
+| 2015-05-10 |     22 | 18 | 20 |        20 |    32 | 26 | 24 | 27.333333 |    20 | 22 | 22 | 21.333333 |   88.8 | 20.337657 | 1.0524354 |
+| 2015-05-14 |     18 | 10 | 10 | 12.666667 |    20 | 18 | 20 | 19.333333 |    22 | 20 | 20 | 20.666667 |   90.1 | 15.857580 | 1.0625565 |
+| 2015-05-15 |     15 | 18 | 15 |        16 |    18 | 22 | 18 | 19.333333 |    22 | 20 | 20 | 20.666667 |   89.7 | 16.813608 | 1.0603804 |
+| 2015-05-27 |     10 | 12 | 12 | 11.333333 |    20 | 16 | 18 |        18 |    20 | 20 | 18 | 19.333333 |   91.2 | 14.695008 | 1.0652148 |
+| 2015-06-24 |     10 | 10 | 12 | 10.666667 |    16 | 19 | 22 |        19 |    20 | 20 | 20 |        20 |   91.7 | 14.987214 | 1.0645454 |
+| 2015-04-10 |     11 | 10 | 11 | 10.666667 |    20 | 19 | 20 | 19.666667 |    21 | 20 | 18 | 19.666667 |   91.8 | 15.084378 | 1.0643230 |
+#+TBLFM: $5 = vmean($2..$4)::$9 = vmean($6..$8)::$13 = vmean($10..$12)::$16=1.10938-(0.0008267 *($5+$9+$13)) + (0.0000016*(($5+$9+$13)*($5+$9+$13)))-(0.0002574 *30)::$15=(495/$16)-450
+# Calculation method Jackson and Pollock 3 fold technique.
+
+#+begin_src R :exports results :results output graphics :var data=caliper :file body_fat.png :width 800 :height 600
+par(mar=c(5,4,4,5)+.1)
+plot(as.Date(data$Date,origin="1970-01-01"), data$Fat, xlab="Date", ylim=c(0,30), ylab="Body Fat %",format="%d %b", type="b", pch=16, col="black")
+par(new=TRUE)
+plot(as.Date(data$Date,origin="1970-01-01"), data$Weight,,type="b",col="blue",xaxt="n",yaxt="n",xlab="",ylab="")
+axis(4)
+mtext("Weight",side=4,line=3)
+legend("topleft",col=c("black","blue"),lty=1,legend=c("Body Fat %","Weight"))
+#+End_src
+
+#+RESULTS:
+[[file:body_fat.png]]
+
+
+* Strength
+I am keeping track of the maximum repetitions I can do of certain exercises as a measure of how my strength improves.
+#+tblname: strength
+|       Date | pushups | chinups | pullups |
+|------------+---------+---------+---------|
+| 2015-04-02 |      15 |       5 |       3 |
+| 2015-04-04 |      15 |       5 |       3 |
+| 2015-04-10 |      18 |       4 |       2 |
+
+
+#+begin_src R :exports results :results output graphics :var data=strength :file strength.png :width 800 :height 600
+plot(as.Date(data$Date,origin="1970-01-01"), data$pushups, xlab="Date", ylim=c(0,50), ylab="Max. Repetitions",format="%d %b", type="b", pch=16, col="blue")
+lines(as.Date(data$Date,origin="1970-01-01"), data$chinups, type="b",  col="cornflowerblue")
+lines(as.Date(data$Date,origin="1970-01-01"), data$pullups, type="b",  col="black")
+legend("topleft",col=c("blue", "cornflowerblue", "black"),lty=1,legend=c("Push Ups","Chin Ups", "Pull Ups"))
+#+End_src
+
+#+RESULTS:
+[[file:strength.png]]
+
+
+* Body Measurements
+#+tblname: measurements
+|       Date | biceps | waist |
+|------------+--------+-------|
+| 2015-19-09 |     35 |    95 |
+| 2015-04-10 |     36 |    94 |
+
